@@ -12,7 +12,7 @@ module.exports = {
       city: {
         type: Sequelize.STRING
       },
-      userId: {
+      UserId: {
         type: Sequelize.BIGINT,
         references: {
           model: {

@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   PatientsProfessionals.init({
-    patientId: DataTypes.BIGINT,
-    professionalId: DataTypes.BIGINT
+    PatientId: DataTypes.BIGINT,
+    ProfessionalId: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'PatientsProfessionals',

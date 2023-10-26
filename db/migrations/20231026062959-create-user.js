@@ -15,7 +15,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
-      roleId: {
+      RoleId: {
         type: Sequelize.BIGINT,
         references: {
           model: {

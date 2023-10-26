@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('PatientsProfessionals', {
-      patientId: {
+      PatientId: {
         type: Sequelize.BIGINT,
         references: {
           model: {
@@ -12,7 +12,7 @@ module.exports = {
           key: 'id'
         }
       },
-      professionalId: {
+      ProfessionalId: {
         type: Sequelize.BIGINT,
         references: {
           model: {
