@@ -15,6 +15,17 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      roleId: {
+        type: Sequelize.BIGINT,
+        references: {
+          model: {
+            tableName: 'Roles'
+          },
+          key: 'id'
+        },
+        allowNull: false,
+        foreignKey: true
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -2,26 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Patients', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      city: {
-        type: Sequelize.STRING
-      },
-      userId: {
+    await queryInterface.createTable('PatientsProfessionals', {
+      patientId: {
         type: Sequelize.BIGINT,
         references: {
           model: {
-            tableName: 'Users'
+            tableName: 'Patients'
           },
           key: 'id'
-        },
-        allowNull: false,
-        foreignKey: true
+        }
+      },
+      professionalId: {
+        type: Sequelize.BIGINT,
+        references: {
+          model: {
+            tableName: 'Professionals'
+          },
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +34,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Patients');
+    await queryInterface.dropTable('PatientsProfessionals');
   }
 };
