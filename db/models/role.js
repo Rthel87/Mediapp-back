@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Role',
+    scopes: {
+      jsonData: {
+        attributes: {exclude: ['createdAt', 'updatedAt']}
+      }
+    }
   });
   return Role;
 };
