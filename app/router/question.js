@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const questionController = require('../../controlles/questionController');
+const questionController = require('../controllers/questionController');
 
 router.get('/', (res, req) => {
   questionController.index(res, req);
