@@ -1,4 +1,4 @@
-const { User, Role } = require('../../db/models/index')
+const { User, Role } = require('../../db/models/index');
 
 // Servicio que entrega la información del usuario autenticado
 async function user(req, res) {
@@ -11,7 +11,7 @@ async function user(req, res) {
       exclude: ['createdAt', 'updatedAt', 'password']
     }
   });
-  res.status(200).json(user)
+  res.status(200).json(user);
 }
 
 module.exports = {
