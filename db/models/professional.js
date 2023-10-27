@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Professional',
+    scopes: {
+      jsonData: {
+        attributes: {excludes: ['createdAt', 'updatedAt']}
+      }
+    }
   });
   return Professional;
 };

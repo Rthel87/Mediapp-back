@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    scopes: {
+      userData: {
+        attributes: {excludes: ['password', 'createdAt', 'updatedAt']}
+      }
+    }
   });
   return User;
 };
