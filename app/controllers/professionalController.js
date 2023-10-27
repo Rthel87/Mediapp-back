@@ -25,7 +25,11 @@ async function create(req, res) {
 async function show(req, res) {
   let professional = await Professional.scope('jsonData').findByPk(req.params.id);
   if (!!professional) {
-    res.status(200).json(professional)
+    res.status(200).json(professional);
+  } else {
+    res.status(422).json(
+      {error: 'No se ha encontrado el profesional con  id ' + req.params.id}
+    );
   }
 }
 
