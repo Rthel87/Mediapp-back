@@ -35,7 +35,7 @@ async function show(req, res) {
 
 
 // Servicio que permite actualizar la información de un profesional
-async function upgrade(req, res) {
+async function update(req, res) {
   let professional = await Professional.findByPk(req.params.id);
   if (!!professional) {
     professional.name = req.body.professional.name;
@@ -64,6 +64,6 @@ module.exports = {
   index,
   create,
   show,
-  upgrade,
+  update,
   destroy
 }
