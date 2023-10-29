@@ -2,11 +2,11 @@ const router = require('express').Router();
 const questionController = require('../controllers/questionController');
 
 router.get('/', (res, req) => {
-  questionController.index(res, req);
+  questionController.index(req, res);
 });
 
 router.post('/', (req, res) => {
-  questionController.create(res, req);
+  questionController.create(req, res);
 });
 
 router.put('/:id', (req, res) => {
