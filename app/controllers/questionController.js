@@ -9,10 +9,10 @@ async function index(req, res) {
 // Servicio que permite crear una nueva pregunta
 async function create(req, res) {
   let question = Question.build({
-    question: req.body.question.question,
-    answerOne: req.body.question.answerOne,
-    answerTwo: req.body.question.answerTwo,
-    answerThree: req.body.question.answerThree
+    question: req.body.questionSet.question,
+    answerOne: req.body.questionSet.answerOne,
+    answerTwo: req.body.questionSet.answerTwo,
+    answerThree: req.body.questionSet.answerThree
   });
   try {
     await question.save();
@@ -36,10 +36,10 @@ async function show(req, res) {
 async function update(req, res) {
   let question = await Question.scope('jsonData').findByPk(req.params.id);
   if (!!question) {
-    question.question = req.body.question.question;
-    question.answerOne = req.body.question.answerOne;
-    question.answerTwo = req.body.question.answerTwo;
-    question.answerThree = req.body.question.answerThree;
+    question.question = req.body.questionSet.question;
+    question.answerOne = req.body.questionSet.answerOne;
+    question.answerTwo = req.body.questionSet.answerTwo;
+    question.answerThree = req.body.questionSet.answerThree;
     await question.save();
     res.status(200).json(question);
   } else {

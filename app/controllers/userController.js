@@ -5,7 +5,7 @@ async function user(req, res) {
   const user = await User.findByPk(req.user.userId, {
     include: {
       model: Role.scope('jsonData'),
-      required: true,
+      required: true
     },
     attributes: {
       exclude: ['createdAt', 'updatedAt', 'password']

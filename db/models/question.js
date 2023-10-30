@@ -16,11 +16,16 @@ module.exports = (sequelize, DataTypes) => {
   Question.init({
     question: DataTypes.STRING,
     answerOne: DataTypes.STRING,
-    aswerTwo: DataTypes.STRING,
+    answerTwo: DataTypes.STRING,
     answerThree: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Question',
+    scopes: {
+      jsonData: {
+        attributes: {exclude: ['createdAt', 'updatedAt']}
+      }
+    }
   });
   return Question;
 };

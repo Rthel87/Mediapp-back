@@ -15,7 +15,7 @@ module.exports = {
       answerOne: {
         type: Sequelize.STRING
       },
-      aswerTwo: {
+      answerTwo: {
         type: Sequelize.STRING
       },
       answerThree: {
