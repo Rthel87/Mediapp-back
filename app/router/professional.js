@@ -25,8 +25,4 @@ router.delete('/:id', (req, res) => {
   professionalController.destroy(req, res);
 });
 
-router.post('/assignment', (req, res) => {
-
-});
-
 module.exports = router;
