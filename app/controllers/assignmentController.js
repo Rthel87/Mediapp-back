@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 async function index(req, res) {
   const professionals = await Professional.scope('jsonData').findAll({
     include: {
-      model: Patient,
+      model: Patient.scope('jsonData'),
       through: {
         attributes: ['createdAt']
       },
