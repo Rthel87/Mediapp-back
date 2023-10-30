@@ -1,10 +1,25 @@
 const { Patient, User, Role, Professional } = require('../../db/models/index');
 const bcrypt = require('bcrypt');
 
+// Servicio que entrega el listado de asignaciones de pacientes por profesional
+async function index(req, res) {
+  const professionals = await Professional.scope('jsonData').findAll({
+    include: {
+      model: Patient,
+      through: {
+        attributes: ['createdAt']
+      },
+      include: {
+        model: User.scope('userData'),
+        required: true
+      }
+    }
+  });
+  res.status(200).json(professionals);
+}
+
 // Servicio que permite crear y/o actualizar un paciente junto con la asignación de un profesional
 async function create(req, res) {
-  console.log(req.body.patient);
-  console.log(req.body.professional);
   const professional = await Professional.findByPk(req.body.professional.id);
   const hash = bcrypt.hashSync(req.body.patient.password, 10);
   let patient = await Patient.findOne({
@@ -37,10 +52,28 @@ async function create(req, res) {
     });
   }
   await patient.addProfessionals(professional);
-  res.status(201).json(patient)
+  res.status(201).json(patient);
 }
 
+// Servicio que entrega los profesionales asignados a un paciente identificado por su 'id' de usuario
+async function show(req, res) {
+  const patient = await User.scope('userData').findByPk(req.params.id, {
+    include: {
+      model: Patient.scope('jsonData'),
+      required: true,
+      include: {
+        model: Professional.scope('jsonData'),
+        through: {
+          attributes: ['createdAt']
+        }
+      }
+    }
+  });
+  res.status(200).json(patient);
+}
 
 module.exports = {
-  create
+  index,
+  create,
+  show
 }
