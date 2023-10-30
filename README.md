@@ -103,3 +103,224 @@ Desplegar la aplicación en entorno de desarrollo:
 ```
 npm run dev
 ```
+
+## Diseño
+### Modelo entidad relación
+Las entidades definidas para la base de datos, junto con las relaciones y tipos de datos configurados son las que se presentan a continuación en la siguiente imagen:
+
+[![MER-Medi-App-v-C.png](https://i.postimg.cc/FzjxJWwJ/MER-Medi-App-v-C.png)](https://postimg.cc/64pZk0W9)
+
+### Endpoints y estructura de datos
+#### Endpoints
+Los *endpoints* de la aplicación, junto con los verbos HTTP de cada uno de ellos y los controladores que las ejecutan son los presentados a continuación:
+
+| Endpoint              | Verbo       | Controlador                      |
+|:--------------------- |:-----------:|:-------------------------------- |
+| /login                | POST        | authenticationController#login   |
+| /users/data           | GET         | userController#user              |
+| /questions            | GET         | questionController#index         |
+| /questions            | POST        | questionController#create        |
+| /questions/:id        | GET         | questionController#show          |
+| /questions/:id        | PUT / PATCH | questionController#update        |
+| /questions/:id        | DELETE      | questionController#destroy       |
+| /professionals        | GET         | professionalController#index     |
+| /professionals        | POST        | professionalController#create    |
+| /professionals/:id    | GET         | professionalController#show      |
+| /professionals/:id    | PUT / PATCH | professionalController#update    |
+| /professionals/:id    | DELETE      | professionalController#destroy   |
+| /assignments          | GET         | assignmentController#index       |
+| /assignments/:id      | GET         | assignmentController#show        |
+| /public/questions     | GET         | questionController#index         |
+| /public/professionals | GET         | professionalController#index     |
+| /public/assignment    | GET         | assignmentController#create      |
+
+#### Estructura de datos
+Las estructuras de datos de los *endpoints* anteriores se presentan a continuación para cada método según controlador:
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __authenticationController#login__
+```
+{
+    email:
+    password:
+}
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __userController#user__:
+```
+  {
+    id:
+    name:
+    email:
+    mediumUrl:
+    RoleId:
+    Role: {
+      id:
+      role:
+      range:
+    }
+  }
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __questionController#index__:
+```
+[
+  {
+    id:
+    question:
+    answerOne:
+    answerTwo:
+    answerThree:
+  }
+]
+```
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __questionController#create__
+```
+{
+  questionSet: {
+    question:
+    answerOne:
+    answerTwo:
+    answerThree:
+  }
+}
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __questionController#show__:
+```
+{
+    id:
+    question:
+    answerOne:
+    answerTwo:
+    answerThree:
+}
+```
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __questionController#update__
+```
+{
+  questionSet: {
+    question:
+    answerOne:
+    answerTwo:
+    answerThree:
+  }
+}
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __professionalController#index__:
+```
+[
+  {
+    id:
+    name:
+    speciality:
+    level:
+  }
+]
+```
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __professionalController#create__
+```
+{
+  professional: {
+    name:
+    speciality:
+    level:
+  }
+}
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __professionalController#show__:
+```
+{
+  id:
+  name:
+  speciality:
+  level:
+}
+```
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __professionalController#update__
+```
+{
+  professional: {
+    name:
+    speciality:
+    level:
+  }
+}
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __assignmentController#index__:
+```
+[
+  {
+    id:
+    name:
+    speciality:
+    level:
+    Patients: [
+      {
+        id:
+        city:
+        UserId:
+        PatientsProfessionals: {
+          createdAt:
+        },
+        User: {
+          id:
+          name:
+          email:
+          RoleId:
+        }
+      }
+    ]
+  }
+]
+```
+
+* Estructura de datos entregada por el *endpoint* asociado a __assignmentController#ushow__:
+```
+{
+  id:
+  name:
+  email:
+  RoleId:
+  Patient: {
+    id:
+    city:
+    UserId:
+    Professionals: [
+      {
+        id:
+        name:
+        speciality:
+        level:
+        PatientsProfessionals: {
+          createdAt:
+        }
+      }
+    ]
+  }
+}
+```
+
+* Estructura de datos a ser enviada al *endpoint* asociado a __assignmentController#create__
+```
+{
+  patient: {
+    name:
+    email:
+    city:
+    password:
+  },
+  profesional: {
+    id:
+    name:
+    speciality:
+    level:
+  }
+}
+```
