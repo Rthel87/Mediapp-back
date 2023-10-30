@@ -9,6 +9,10 @@ router.post('/', (req, res) => {
   questionController.create(req, res);
 });
 
+router.get('/:id', (req, res) => {
+  questionController.show(req, res);
+})
+
 router.put('/:id', (req, res) => {
   questionController.update(req, res);
 });

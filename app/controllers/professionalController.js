@@ -28,7 +28,7 @@ async function show(req, res) {
     res.status(200).json(professional);
   } else {
     res.status(422).json(
-      {error: 'No se ha encontrado el profesional con  id ' + req.params.id}
+      {error: 'No se ha encontrado el profesional con id ' + req.params.id}
     );
   }
 }
