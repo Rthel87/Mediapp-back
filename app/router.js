@@ -12,6 +12,6 @@ router.use('/public', public);
 router.use('/users', verifyToken, user);
 router.use('/questions', verifyToken, question);
 router.use('/professionals', verifyToken, professional);
-router.use('/assignments', assignment);
+router.use('/assignments', verifyToken, assignment);
 
 module.exports = router;
